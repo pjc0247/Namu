@@ -27,6 +27,7 @@ Mock.Select<MyClass>()
 
 목업된 값 가져오기
 ----
+목업에 의해 `null`이 설정되는 케이스도 존재하므로, 설정된 값을 가져오는 작업은 아래와 같이 2 단계를 거칩니다.
 ```c#
 int SomeMethod() {
   if (Mock.IsRegistered) return (int)Mock.Value;
