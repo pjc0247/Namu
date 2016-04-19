@@ -25,6 +25,15 @@ Mock.Select<MyClass>()
   .Should(10);
 ```
 
+__Runtime Mock__<br>
+런타임에 실행되는 값 생성기를 설정하여 런타임 목업을 설정할 수 있습니다.<br>
+생성기는 매번 실행됩니다.
+```c#
+Mock.Select<MyClass>()
+  .Method(x => x.JINWOOTIME)
+  .Should(() => DateTime.Now.ToString());
+```
+
 목업된 값 가져오기
 ----
 목업에 의해 `null`이 설정되는 케이스도 존재하므로, 설정된 값을 가져오는 작업은 아래와 같이 2 단계를 거칩니다.

@@ -96,7 +96,7 @@ namespace Namu
 
                 lock (mocks)
                 {
-                    return mocks[GetPath(caller)];
+                    return mocks[GetPath(caller)]();
                 }
             }
         }
@@ -108,7 +108,7 @@ namespace Namu
                 {
                     var caller = ReflectionUtility.Caller2;
 
-                    return mocks[GetPath(caller)];
+                    return mocks[GetPath(caller)]();
                 }
                 finally
                 {
@@ -128,16 +128,16 @@ namespace Namu
                 if (mocks.ContainsKey(path) == false)
                     return false;
 
-                value = mocks[path];
+                value = mocks[path]();
             }
             return true;
         }
 
-        private static Dictionary<string, object> mocks { get; set; }
+        private static Dictionary<string, Func<object>> mocks { get; set; }
 
         static Mock()
         {
-            mocks = new Dictionary<string, object>();
+            mocks = new Dictionary<string, Func<object>>();
         }
 
         internal static string GetPath(MethodBase method)
@@ -155,9 +155,17 @@ namespace Namu
         {
             lock (mocks)
             {
-                mocks[path] = value;
+                mocks[path] = () => value;
             }
         }
+        internal static void Bind(string path, Func<object> generator)
+        {
+            lock (mocks)
+            {
+                mocks[path] = generator;
+            }
+        }
+
         internal static void Unbind(string path)
         {
             lock (mocks)
@@ -230,7 +238,11 @@ namespace Namu
         {
             Mock.Bind(Mock.GetPath(property), value);
         }
-		public void Unbind()
+        public void Should(Func<object> generator)
+        {
+            Mock.Bind(Mock.GetPath(property), generator);
+        }
+        public void Unbind()
         {
             Mock.Unbind(Mock.GetPath(property));
         }
@@ -248,7 +260,11 @@ namespace Namu
         {
             Mock.Bind(Mock.GetPath(method), value);
         }
-		public void Unbind()
+        public void Should(Func<object> generator)
+        {
+            Mock.Bind(Mock.GetPath(method), generator);
+        }
+        public void Unbind()
         {
             Mock.Unbind(Mock.GetPath(method));
         }
