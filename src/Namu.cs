@@ -230,6 +230,10 @@ namespace Namu
         {
             Mock.Bind(Mock.GetPath(property), value);
         }
+		public void Unbind()
+        {
+            Mock.Unbind(Mock.GetPath(property));
+        }
     }
     public sealed class BoundMethod
     {
@@ -243,6 +247,10 @@ namespace Namu
         public void Should(object value)
         {
             Mock.Bind(Mock.GetPath(method), value);
+        }
+		public void Unbind()
+        {
+            Mock.Unbind(Mock.GetPath(method));
         }
     }
 }
