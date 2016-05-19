@@ -3,7 +3,7 @@ Namu
 ![mock](logo.png)<br>
 __(Namu-Mock)__
 
-¸ñ¾÷ ¼³Á¤ÇÏ±â
+ëª©ì—… ì„¤ì •í•˜ê¸°
 ----
 __Static Method__
 ```c#
@@ -26,40 +26,40 @@ Mock.Select<MyClass>()
 ```
 
 __Runtime Mock__<br>
-·±Å¸ÀÓ¿¡ ½ÇÇàµÇ´Â °ª »ý¼º±â¸¦ ¼³Á¤ÇÏ¿© ·±Å¸ÀÓ ¸ñ¾÷À» ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.<br>
-»ý¼º±â´Â ¸Å¹ø ½ÇÇàµË´Ï´Ù.
+ëŸ°íƒ€ìž„ì— ì‹¤í–‰ë˜ëŠ” ê°’ ìƒì„±ê¸°ë¥¼ ì„¤ì •í•˜ì—¬ ëŸ°íƒ€ìž„ ëª©ì—…ì„ ì„¤ì •í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.<br>
+ìƒì„±ê¸°ëŠ” ë§¤ë²ˆ ì‹¤í–‰ë©ë‹ˆë‹¤.
 ```c#
 Mock.Select<MyClass>()
   .Method(x => x.JINWOOTIME)
   .Should(() => DateTime.Now.ToString());
 ```
 
-¸ñ¾÷µÈ °ª °¡Á®¿À±â
+ëª©ì—…ëœ ê°’ ê°€ì ¸ì˜¤ê¸°
 ----
-¸ñ¾÷¿¡ ÀÇÇØ `null`ÀÌ ¼³Á¤µÇ´Â ÄÉÀÌ½ºµµ Á¸ÀçÇÏ¹Ç·Î, ¼³Á¤µÈ °ªÀ» °¡Á®¿À´Â ÀÛ¾÷Àº ¾Æ·¡¿Í °°ÀÌ 2 ´Ü°è¸¦ °ÅÄ¨´Ï´Ù.
+ëª©ì—…ì— ì˜í•´ `null`ì´ ì„¤ì •ë˜ëŠ” ì¼€ì´ìŠ¤ë„ ì¡´ìž¬í•˜ë¯€ë¡œ, ì„¤ì •ëœ ê°’ì„ ê°€ì ¸ì˜¤ëŠ” ìž‘ì—…ì€ ì•„ëž˜ì™€ ê°™ì´ 2 ë‹¨ê³„ë¥¼ ê±°ì¹©ë‹ˆë‹¤.
 ```c#
 int SomeMethod() {
   if (Mock.IsRegistered) return (int)Mock.Value;
 }
 ```
-`Namu`ÀÇ APIµéÀº ÀÚµ¿À¸·Î caller Á¤º¸¸¦ °¡Á®¿À±â ¶§¹®¿¡ È£ÃâÀÚÀÇ Á¤º¸¸¦ °°ÀÌ ³Ñ°ÜÁÙ ÇÊ¿ä°¡ ¾ø½À´Ï´Ù.
+`Namu`ì˜ APIë“¤ì€ ìžë™ìœ¼ë¡œ caller ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ê¸° ë•Œë¬¸ì— í˜¸ì¶œìžì˜ ì •ë³´ë¥¼ ê°™ì´ ë„˜ê²¨ì¤„ í•„ìš”ê°€ ì—†ìŠµë‹ˆë‹¤.
 
-½º·¹µå ¾ÈÁ¤¼º
+ìŠ¤ë ˆë“œ ì•ˆì „ì„±
 ----
-±âº»ÀûÀ¸·Î `Namu`ÀÇ ¸ðµç public APIµéÀº ½º·¹µå¿¡ ¾ÈÀüÇÕ´Ï´Ù.<br>
-ÇÏÁö¸¸ ¸ÖÆ¼½º·¹µå È¯°æ¿¡¼­´Â ¿©ÀüÈ÷ ¾Æ·¡¿Í °°Àº ½Ã³ª¸®¿À°¡ ¹ß»ýÇÒ ¼ö ÀÖ±â ¶§¹®¿¡, `Namu`´Â Æ®·£Á§¼Ç API¸¦ Á¦°øÇÕ´Ï´Ù.
+ê¸°ë³¸ì ìœ¼ë¡œ `Namu`ì˜ ëª¨ë“  public APIë“¤ì€ ìŠ¤ë ˆë“œì— ì•ˆì „í•©ë‹ˆë‹¤.<br>
+í•˜ì§€ë§Œ ë©€í‹°ìŠ¤ë ˆë“œ í™˜ê²½ì—ì„œëŠ” ì—¬ì „ížˆ ì•„ëž˜ì™€ ê°™ì€ ì‹œë‚˜ë¦¬ì˜¤ê°€ ë°œìƒí•  ìˆ˜ ìžˆê¸° ë•Œë¬¸ì—, `Namu`ëŠ” íŠ¸ëžœì ì…˜ APIë¥¼ ì œê³µí•©ë‹ˆë‹¤.
 ```
-IsRegistered -> True ·Î ÀÎÇØ¼­ IF ÁøÀÔ
+IsRegistered -> True ë¡œ ì¸í•´ì„œ IF ì§„ìž…
 Mock.Unregister 
-Value ½ÇÇà ½Ã °ªÀÌ ¾øÀ¸¹Ç·Î ÀÍ¼Á¼Ç ¹ß»ý
+Value ì‹¤í–‰ ì‹œ ê°’ì´ ì—†ìœ¼ë¯€ë¡œ ìµì…‰ì…˜ ë°œìƒ
 ```
-¾Æ·¡ÀÇ ¿¹Á¦µéÀº Æ®·£Á§¼ÇÀ» »ç¿ëÇÏ¿© ÀüÃ¼ µ¿ÀÛÀ» ½º·¹µå¿¡ ¾ÈÀüÇÏ°Ô ¸¸µå´Â ¹æ¹ýÀ» º¸¿©ÁÝ´Ï´Ù.
+ì•„ëž˜ì˜ ì˜ˆì œë“¤ì€ íŠ¸ëžœì ì…˜ì„ ì‚¬ìš©í•˜ì—¬ ì „ì²´ ë™ìž‘ì„ ìŠ¤ë ˆë“œì— ì•ˆì „í•˜ê²Œ ë§Œë“œëŠ” ë°©ë²•ì„ ë³´ì—¬ì¤ë‹ˆë‹¤.
 ```c#
 int SomeMethod() {
   if (Mock.IsRegisteredTx) return Mock.Value;
 }
 ```
-`IsRegisteredTx` API°¡ È£ÃâµÇ¸é Æ®·£Á§¼ÇÀÌ ½ÃÀÛµË´Ï´Ù. ´ÙÀ½¹ø `Value`°¡ ½ÇÇàµÉ ¶§ ±îÁö Å©¸®Æ¼ÄÃ ¼½¼Ç¿¡ ÁøÀÔÇÑ »óÅÂ·Î ³²¾ÆÀÖ°Ô µÊ¿¡ ÁÖÀÇÇØ ÁÖ¼¼¿ä.
+`IsRegisteredTx` APIê°€ í˜¸ì¶œë˜ë©´ íŠ¸ëžœì ì…˜ì´ ì‹œìž‘ë©ë‹ˆë‹¤. ë‹¤ìŒë²ˆ `Value`ê°€ ì‹¤í–‰ë  ë•Œ ê¹Œì§€ í¬ë¦¬í‹°ì»¬ ì„¹ì…˜ì— ì§„ìž…í•œ ìƒíƒœë¡œ ë‚¨ì•„ìžˆê²Œ ë¨ì— ì£¼ì˜í•´ ì£¼ì„¸ìš”.
 
 ```c#
 int SomeMethod() {
@@ -67,4 +67,4 @@ int SomeMethod() {
   if (Mock.TryGetValue(out value)) return value;
 }
 ```
-¶Ç´Â À§¿Í °°ÀÌ ´ÜÀÏ API È£Ãâ·Î ´ëÃ¼ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+ë˜ëŠ” ìœ„ì™€ ê°™ì´ ë‹¨ì¼ API í˜¸ì¶œë¡œ ëŒ€ì²´í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
